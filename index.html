@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #dff6ff, #eef2ff);
+            padding: 40px 20px;
+            color: #333;
+        }
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+        /* Heading */
+        .heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .heading h1 {
+            color: #263238;
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        .heading p {
+            color: #667085;
+            font-size: 15px;
+        }
+        /* Form Card */
+        .form-card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+        .form-card h2 {
+            margin-bottom: 22px;
+            color: #344054;
+            font-size: 22px;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #475467;
+            font-size: 14px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #d0d5dd;
+            border-radius: 9px;
+            outline: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+        .form-group input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+        }
+        /* Add Employee Button */
+        .add-btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 9px;
+            background: #667eea;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .add-btn:hover {
+            background: #4f5fd5;
+            transform: translateY(-1px);
+        }
+        /* Employee Section */
+        .employee-section {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        .employee-section h2 {
+            color: #344054;
+            margin-bottom: 20px;
+        }
+        /* Employee List */
+        #content {
+            list-style: none;
+        }
+        #content li {
+            background: #f8faff;
+            border: 1px solid #e4e7ec;
+            border-left: 5px solid #667eea;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: #344054;
+            font-size: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+        /* Buttons inside employee card */
+        #content li button {
+            border: none;
+            padding: 8px 14px;
+            margin: 12px 6px 0 0;
+            border-radius: 7px;
+            color: white;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        /* Delete */
+        #content li button:nth-of-type(1) {
+            background: #ef4444;
+        }
+        #content li button:nth-of-type(1):hover {
+            background: #dc2626;
+        }
+        /* Done */
+        #content li button:nth-of-type(2) {
+            background: #22c55e;
+        }
+        #content li button:nth-of-type(2):hover {
+            background: #16a34a;
+        }
+        /* Update */
+        #content li button:nth-of-type(3) {
+            background: #f59e0b;
+        }
+        #content li button:nth-of-type(3):hover {
+            background: #d97706;
+        }
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 12px;
+            }
+            .form-card,
+            .employee-section {
+                padding: 20px;
+            }
+            .heading h1 {
+                font-size: 26px;
+            }
+            #content li button {
+                margin-top: 10px;
+                padding: 7px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Heading -->
+        <div class="heading">
+            <h1>Employee Management</h1>
+            <p>Add, update, and delete employee details</p>
+        </div>
+        <!-- Employee Form -->
+        <div class="form-card">
+            <h2>Add Employee</h2>
+            <div class="form-group">
+                <label>Employee ID</label>
+                <input type="text" id="task1" placeholder="Enter employee ID">
+            </div>
+            <div class="form-group">
+                <label>Employee Name</label>
+                <input type="text" id="task2" placeholder="Enter employee name">
+            </div>
+            <div class="form-group">
+                <label>Employee Designation</label>
+                <input type="text" id="task3" placeholder="Enter designation">
+            </div>
+            <div class="form-group">
+                <label>Employee Salary</label>
+                <input type="text" id="task4" placeholder="Enter salary">
+            </div>
+            <button class="add-btn" onclick="employee()">
+                Add Employee
+            </button>
+        </div>
+        <!-- Employee List -->
+        <div class="employee-section">
+            <h2>Employee List</h2>
+            <ul id="content"></ul>
+        </div>
+    </div>
+    <script>
+        function employee(){ 
+            a=document.getElementById("task1").value 
+            b=document.getElementById("task2").value 
+            c=document.getElementById("task3").value 
+            d=document.getElementById("task4").value 
+            e=document.getElementById("content") 
+            f=document.createElement("li") 
+            f.innerHTML=a+"<br>"+b+"<br>"+c+"<br>"+d+"<br>"+"<button onclick='this.parentElement.remove()'>DELETE</button>" 
+            +"<button onclick='employee1(this.parentElement)'>DONE</button>" 
+            +"<button onclick='employee2(this.parentElement)'>UPDATE</button>" 
+            e.appendChild(f) 
+        } 
+        function employee1(a){ 
+            a.style="color:green"; 
+        } 
+        function employee2(a){ 
+            id=prompt("Enter the Employee's ID") 
+            name=prompt("Enter the Employee's Name") 
+            design=prompt("Enter the Employee's Designation") 
+            salary=prompt("Enter the Employee's Salary") 
+            a.childNodes[0].textContent=id 
+            a.childNodes[2].textContent=name 
+            a.childNodes[4].textContent=design 
+            a.childNodes[6].textContent=salary
+        } 
+    </script>
+</body>
+</html>
+ 
